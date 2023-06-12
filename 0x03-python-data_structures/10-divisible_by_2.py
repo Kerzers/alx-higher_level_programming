@@ -4,5 +4,4 @@
 
 def divisible_by_2(my_list=[]):
     divisible = [True if elmt % 2 == 0 else False for elmt in my_list]
-    print(divisible)
     return divisible
