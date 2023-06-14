@@ -9,5 +9,6 @@ def roman_to_int(roman_string):
                      'D': 500, 'M': 1000}
     converted_int = 0
     for char in roman_string:
-        converted_int += roman_numeral[char]
+        if char in roman_numeral:
+            converted_int += roman_numeral[char]
     return converted_int
