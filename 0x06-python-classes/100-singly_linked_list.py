@@ -55,10 +55,12 @@ class SinglyLinkedList:
         """ Prints the entire list in stdout, one node per line"""
         result = ""
         current = self.__head
-        while current.next_node is not None:
-            result += str(current.data) + '\n'
-            current = current.next_node
-        result += str(current.data)
+        if current is not None:
+            while  current.next_node is not None:
+                result += str(current.data) + '\n'
+                current = current.next_node
+            result += str(current.data)
+
         return result
 
     def sorted_insert(self, value):
