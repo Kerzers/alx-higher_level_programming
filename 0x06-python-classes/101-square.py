@@ -1,4 +1,4 @@
-#!/usr/bin/paython3
+#!/usr/bin/python3
 """ This module defines Class Square"""
 
 
