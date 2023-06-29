@@ -10,10 +10,10 @@ class Square:
 
         Args:
         size (int): size of square
-        position (tuple): coordinates of a square
+        position (int, int):tuple that gives the coordinates of a square
         """
         self.size = size
-        self.__position = position
+        self.position = position
 
     @property
     def size(self):
@@ -40,11 +40,10 @@ class Square:
         if not isinstance(value, tuple) or len(value) != 2:
             raise TypeError("position must be a tuple of 2 positive integers")
         for i in range(2):
-            if not isinstance(value[i], int):
+            if not isinstance(value[i], int) or value[i] < 0:
                 raise TypeError("position must be a tuple of 2 positive \
                     integers")
-            else:
-                self.__position[i] = value[i]
+        self.__position = value
 
     def area(self):
         """Public instance method: calculates the area of a square.
