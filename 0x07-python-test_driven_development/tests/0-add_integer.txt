@@ -1,0 +1,47 @@
+This is a 0-add_integer text file
+========================
+Using "add_integer"
+----------
+First import "add_integer" from the "0-add_integer" module:
+::
+        >>> add_integer = __import__('0-add_integer').add_integer
+
+For Numbers
+-----------
+add_integer(): returns an integer: the addition of a and b
+a and b must be integers or floats
+::
+	>>> add_integer(1, 2)
+	3
+	>>> add_integer(100, -2)
+	98
+	>>> add_integer(2)
+	100
+	>>> add_integer(100.3, -2)
+	98
+
+For non numbers
+---------------
+add_integer(): raise an error TypeError exception with the message
+a must be an integer or b must be an integer if a and b are not int or float
+::
+	>>> add_integer(4, "School")
+	Traceback (most recent call last):
+	TypeError: b must be an integer
+	>>> add_integer("abc", "School")
+        Traceback (most recent call last):
+        TypeError: a must be an integer
+	>>> add_integer(None)
+	Traceback (most recent call last):
+	TypeError: a must be an integer
+
+Cast a string to an integer
+---------------------------
+::
+	>>> add_integer(int("abc"), 5)
+        Traceback (most recent call last):
+        ValueError: invalid literal for int() with base 10: 'abc'
+	>>> add_integer(4, int("string"))
+	Traceback (most recent call last):
+	ValueError: invalid literal for int() with base 10: 'string'
+	
