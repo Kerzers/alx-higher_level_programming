@@ -1,0 +1,18 @@
+This is a 5-text_indentation text file
+======================================
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+>>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+Quonam modo? Utrum igitur tibi""")
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+Quonam modo?
+
+Utrum igitur tibi
+>>> text_indentation(12)
+Traceback (most recent call last):
+TypeError: text must be a string
+>>> text_indentation("")
+>>> text_indentation(["abc"])
+Traceback (most recent call last):
+TypeError: text must be a string
