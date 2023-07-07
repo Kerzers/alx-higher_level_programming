@@ -13,6 +13,7 @@ class TestMaxInteger(unittest.TestCase):
 
     def test_maxList(self):
         self.assertEqual(max_integer([1, 2, 3, 4]), 4)
+        self.assertEqual(max_integer([10, 2, 3, 4]), 10)
         self.assertIsNone(max_integer([]))
         self.assertEqual(max_integer([10]), 10)
         self.assertEqual(max_integer([0, 0, 0]), 0)
