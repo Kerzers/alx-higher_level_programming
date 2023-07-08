@@ -6,6 +6,8 @@ that prints a square with the character #.
 
 
 def print_square(size):
+    """ function that prints a square using #
+    """
     if size is None or not isinstance(size, int):
         raise TypeError("size must be an integer")
     if size < 0:
