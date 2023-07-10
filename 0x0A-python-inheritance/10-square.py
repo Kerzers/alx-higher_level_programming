@@ -1,0 +1,16 @@
+#!/usr/bin/python3
+""" this module define the class: square"""
+Rectangle = __import__('9-rectangle').Rectangle
+
+
+class Square(Rectangle):
+    """ a class square that inherits Rectangle class
+    Attributes:
+    size(int): size of a square
+    """
+    def __init__(self, size):
+        super().__init__(size, size)
+
+    def area(self):
+        """ returns area of a square"""
+        return (super().area())
