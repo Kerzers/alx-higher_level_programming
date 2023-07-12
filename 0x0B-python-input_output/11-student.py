@@ -38,6 +38,7 @@ class Student:
         Args:
             json (dict): pair key/value to replace attributes of Student
         """
-        for key, value in vars(self).items():
-            json[key] = value
-        return json
+        a_dict = vars(self)
+        for key, value in json.items():
+            a_dict[key] = value
+        return a_dict
