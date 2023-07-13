@@ -75,3 +75,35 @@ class Rectangle(Base):
             raise ValueError("y must be >= 0")
         else:
             self.__y = value
+
+    def area(self):
+        """ it returns the area value of the Rectangle instance"""
+        return self.__width * self.__height
+
+    def display(self):
+        """it prints in stdout the Rectangle instance with the character # """
+        for _ in range(self.height):
+            print("#" * self.width)
+
+    def __str__(self):
+        """it returns [Rectangle] (<id>) <x>/<y> - <width>/<height>"""
+        return (f"[Rectangle] ({self.id}) {self.x}/{self.y} - "
+                f"{self.width}/{self.height}")
+
+    def display(self):
+        """ it prints in stdout the Rectangle instance with the character #
+        by taking care of x and y"""
+        print ('\n' * self.y, end="")
+        for _ in range(self.height):
+            print(" " * self.x, end="")
+            print("#" * self.width)
+
+    def update(self, *args):
+        """it assigns an argument to each attribute:
+        1st argument should be the id attribute
+        2nd argument should be the width attribute
+        3rd argument should be the height attribute
+        4th argument should be the x attribute
+        5th argument should be the y attribute
+        """
+        (self.id, self.width, self.height, self.s, self.y) = args
