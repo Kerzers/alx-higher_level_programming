@@ -88,7 +88,7 @@ class Rectangle(Base):
     def display(self):
         """ it prints in stdout the Rectangle instance with the character #
         by taking care of x and y"""
-        print ('\n' * self.y, end="")
+        print('\n' * self.y, end="")
         for _ in range(self.height):
             print(" " * self.x, end="")
             print("#" * self.width)
@@ -102,15 +102,15 @@ class Rectangle(Base):
             3rd argument should be the height attribute
             4th argument should be the x attribute
             5th argument should be the y attribute
-        
+
         **kwargs (dict): assigns a key/value argument to attributes
         """
-        if args and len(args) !=0:
+        if args and len(args) != 0:
             if len(args) == 1:
                 self.id = args
-            if len (args) == 2:
+            if len(args) == 2:
                 (self.id, self.width) = args
-            if len (args) == 3:
+            if len(args) == 3:
                 (self.id, self.width, self.height) = args
             if len(args) == 4:
                 (self.id, self.width, self.height, self.x) = args
@@ -128,3 +128,13 @@ class Rectangle(Base):
                     self.x = value
                 if key == "y":
                     self.y = value
+
+    def to_dictionary(self):
+        """ it returns the dictionary representation of a Rectangle.
+        This dictionary must contain:
+        id, width, height, x, y
+        """
+        rectangle_dict = {"id": self.id, "width": self.width,
+                          "height": self.height, "x": self.x,
+                          "y": self.y}
+        return rectangle_dict
