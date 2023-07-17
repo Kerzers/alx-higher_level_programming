@@ -5,7 +5,6 @@ from models.base import Base
 from models.rectangle import Rectangle
 
 
-
 class TestBase(unittest.TestCase):
     """ class to test base class"""
     def test_init(self):
@@ -30,3 +29,7 @@ class TestBase(unittest.TestCase):
         self.assertEqual(Base([1, 2, 3]).id, [1, 2, 3])
         self.assertEqual(Base({"w": 4, "h": 5}).id, {"w": 4, "h": 5})
         self.assertEqual(Base(False).id, False)
+
+    def test_two_args(self):
+        with self.assertRaises(TypeError):
+            Base(1, 2)
