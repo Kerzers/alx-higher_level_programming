@@ -69,6 +69,9 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "width must be > 0"):
             Rectangle(-5, -2, 1)
 
+        with self.assertRaisesRegex(ValueError, "width must be > 0"):
+            Rectangle(-5, -2, 1)
+
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Rectangle(None, 2, 0, 0, 1)
 
@@ -101,6 +104,9 @@ class TestRectangle(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "height must be > 0"):
             Rectangle(5, -2, 1)
+
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            Rectangle(5, 0, 1)
 
         with self.assertRaisesRegex(TypeError, "height must be an integer"):
             Rectangle(1, None, 2, 0, 1)
@@ -191,3 +197,12 @@ class TestRectangle(unittest.TestCase):
 
         with self.assertRaises(AttributeError):
             print(Rectangle(5, 5, 1, 0, 1).__y)
+
+    def test_area(self):
+        """ tests area of rectangle"""
+        r = Rectangle(2, 4)
+        with self.assertRaises(TypeError):
+            r.area(1)
+        self.assertEqual(8, r.area())
+        r.width = 5
+        self.assertEqual(20, r.area())
