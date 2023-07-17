@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ this module defines the class: Base"""
 import json
+import csv
 
 
 class Base:
@@ -68,3 +69,62 @@ class Base:
         new = cls(1, 1)
         new.update(**dictionary)
         return new
+
+    @classmethod
+    def load_from_file(cls):
+        """ it returns a list of instances:
+        The filename must be: <Class name>.json - example: Rectangle.json
+        If the file doesn’t exist, return an empty list
+        Otherwise, return a list of instances:
+        the type of these instances depends on cls
+        """
+        filename = cls.__name__ + ".json"
+        try:
+            with open(filename, "r") as f:
+                str_j = f.read()
+        except FileNotFoundError:
+            return []
+
+        list_output = cls.from_json_string(str_j)
+        list_of_instance = list()
+        for elmt in list_output:
+            list_of_instance.append(cls.create(**elmt))
+        return list_of_instance
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serializes in CSV
+        Args:
+        list_objs (list): list of objects to serialize
+        """
+        filename = cls.__name__ + ".csv"
+        with open(filename, "w", newline='') as f:
+            if list_objs is None or len(list_objs) == 0:
+                csv.write(f).writerow("[]")
+            else:
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ["id", "width", "height", "x", "y"]
+                else:
+                    fieldnames = ["id", "size", "x", "y"]
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                for obj in list_objs:
+                    writer.writerow(obj.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """ Deserializes in CSV """
+        filename = cls.__name__ + ".csv"
+        try:
+            with open(filename, "r", newline='') as f:
+                if cls.__name__ == "Rectangle":
+                    fieldnames = ["id", "width", "height", "x", "y"]
+                else:
+                    fieldnames = ["id", "size", "x", "y"]
+                reader = csv.DictReader(f, fieldnames=fieldnames)
+                list_of_instance = list()
+                for row in reader:
+                    row_dict = dict([(k, int(v)) for k, v in row.items()])
+                    list_of_instance.append(cls.create(**row_dict))
+            return list_of_instance
+        except FileNotFoundError:
+            return []
