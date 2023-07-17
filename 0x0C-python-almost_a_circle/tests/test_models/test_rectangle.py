@@ -206,3 +206,18 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(8, r.area())
         r.width = 5
         self.assertEqual(20, r.area())
+
+    def test_to_dictionary(self):
+        """tests tp_dictionary method of a rectangle"""
+        r = Rectangle(10, 2, 1, 9, 5)
+        result = {'id': 5, 'width': 10, 'height': 2, 'x': 1, 'y': 9}
+        self.assertDictEqual(result, r.to_dictionary())
+
+        r1 = Rectangle(10, 2, 1, 9, 5)
+        r2 = Rectangle(5, 9, 1, 2, 10)
+        r2.update(**r1.to_dictionary())
+        self.assertNotEqual(r1, r2)
+
+        r = Rectangle(1, 2, 4, 1, 1)
+        with self.assertRaises(TypeError):
+            r.to_dictionary(1)
