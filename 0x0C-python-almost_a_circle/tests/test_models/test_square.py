@@ -6,3 +6,5 @@ from models.square import Square
 
 
 class TestSquare(unittest.TestCase):
+    """ tests class Square"""
+    pass
