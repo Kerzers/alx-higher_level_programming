@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """ module: test_rectangle"""
 import unittest
+import sys
+from io import StringIO
 from models.base import Base
 from models.rectangle import Rectangle
 
@@ -247,7 +249,45 @@ class TestRectangle(unittest.TestCase):
         r.update(id=None)
         self.assertEqual(f"[Rectangle] ({r.id}) 10/10 - 10/10", str(r))
 
-    def test_priorities(self):
+    def test_update_priorities(self):
         r = Rectangle(10, 10, 10, 10, 10)
         r.update(1, 2, x=1, y=2)
         self.assertEqual("[Rectangle] (1) 10/10 - 2/10", str(r))
+
+    def test_display(self):
+        r = Rectangle(1, 2, 1, 1)
+        with self.assertRaises(TypeError):
+            r.display(None)
+
+        with self.assertRaises(TypeError):
+            r.display(1)
+
+        with self.assertRaises(TypeError):
+            r.display(1, 2)
+
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r = Rectangle(1, 1, 1, 2)
+        r.display()
+        captured_output = captured_output.getvalue()
+        sys.stdout = sys.__stdout__
+        result = "\n\n #\n"
+        self.assertEqual(captured_output, result)
+
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r = Rectangle(1, 1, 1)
+        r.display()
+        captured_output = captured_output.getvalue()
+        sys.stdout = sys.__stdout__
+        result = " #\n"
+        self.assertEqual(captured_output, result)
+
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r = Rectangle(1, 1)
+        r.display()
+        captured_output = captured_output.getvalue()
+        sys.stdout = sys.__stdout__
+        result = "#\n"
+        self.assertEqual(captured_output, result)

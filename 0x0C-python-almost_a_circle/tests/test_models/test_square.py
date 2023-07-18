@@ -20,6 +20,9 @@ class TestSquare(unittest.TestCase):
         s1 = Square(10, 2)
         s2 = Square(2, 10)
         self.assertNotEqual(s1.id, s2.id)
+        self.assertEqual(s1.size, 10)
+        self.assertEqual(s1.x, 2)
+        self.assertEqual(s1.y, 0)
 
     def test_3_args(self):
         s1 = Square(5, 2, 1)
@@ -208,7 +211,7 @@ class TestSquare(unittest.TestCase):
         r.update(id=None)
         self.assertEqual(f"[Square] ({r.id}) 10/10 - 10", str(r))
 
-    def test_priorities(self):
+    def test_update_priorities(self):
         r = Square(10, 10, 10, 10)
         r.update(1, 2, x=1, y=2)
         self.assertEqual("[Square] (1) 10/10 - 2", str(r))
