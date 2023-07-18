@@ -220,4 +220,34 @@ class TestRectangle(unittest.TestCase):
 
         r = Rectangle(1, 2, 4, 1, 1)
         with self.assertRaises(TypeError):
-            r.to_dictionary(1)
+            r.to_dictionary(2)
+
+    def test_update(self):
+        """ tests update method"""
+        r1 = Rectangle(10, 10, 10, 10)
+        r1.update()
+        self.assertEqual(f"[Rectangle] ({r1.id}) 10/10 - 10/10", str(r1))
+
+        r1.update(89)
+        self.assertEqual("[Rectangle] (89) 10/10 - 10/10", str(r1))
+
+        r1.update(89, 2)
+        self.assertEqual("[Rectangle] (89) 10/10 - 2/10", str(r1))
+
+    def test_update_more_args(self):
+        r = Rectangle(10, 10, 10, 10, 10)
+        r.update(89, 1, 2, 4, 5, 6)
+        self.assertEqual("[Rectangle] (89) 4/5 - 1/2", str(r))
+
+    def test_update__None_id(self):
+        r = Rectangle(10, 10, 10, 10, 10)
+        r.update(None)
+        self.assertEqual(f"[Rectangle] ({r.id}) 10/10 - 10/10", str(r))
+
+        r.update(id=None)
+        self.assertEqual(f"[Rectangle] ({r.id}) 10/10 - 10/10", str(r))
+
+    def test_priorities(self):
+        r = Rectangle(10, 10, 10, 10, 10)
+        r.update(1, 2, x=1, y=2)
+        self.assertEqual("[Rectangle] (1) 10/10 - 2/10", str(r))

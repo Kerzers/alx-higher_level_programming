@@ -182,3 +182,33 @@ class TestSquare(unittest.TestCase):
         s = Square(10, 10, 10, 10)
         with self.assertRaises(TypeError):
             s.to_dictionary(1)
+
+    def test_update(self):
+        """ tests update method"""
+        r1 = Square(10, 10, 10)
+        r1.update()
+        self.assertEqual(f"[Square] ({r1.id}) 10/10 - 10", str(r1))
+
+        r1.update(89)
+        self.assertEqual("[Square] (89) 10/10 - 10", str(r1))
+
+        r1.update(89, 2)
+        self.assertEqual("[Square] (89) 10/10 - 2", str(r1))
+
+    def test_update_more_args(self):
+        r = Square(10, 10, 10, 10)
+        r.update(89, 1, 4, 5, 6)
+        self.assertEqual("[Square] (89) 4/5 - 1", str(r))
+
+    def test_update__None_id(self):
+        r = Square(10, 10, 10, 10)
+        r.update(None)
+        self.assertEqual(f"[Square] ({r.id}) 10/10 - 10", str(r))
+
+        r.update(id=None)
+        self.assertEqual(f"[Square] ({r.id}) 10/10 - 10", str(r))
+
+    def test_priorities(self):
+        r = Square(10, 10, 10, 10)
+        r.update(1, 2, x=1, y=2)
+        self.assertEqual("[Square] (1) 10/10 - 2", str(r))
