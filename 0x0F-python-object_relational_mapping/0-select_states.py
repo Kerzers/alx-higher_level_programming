@@ -10,7 +10,7 @@ if __name__ == "__main__":
     cur = conn.cursor()
     cur.execute("SELECT * FROM states ORDER BY id ASC")
     query_rows = cur.fetchall()
-    from row in query_rows:
+    for row in query_rows:
         print(row)
     cur.close()
     conn.close()
